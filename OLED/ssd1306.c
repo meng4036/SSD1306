@@ -8,15 +8,12 @@
 #include "ssd1306.h"
 #include "port.h"
 
-void display_init() {
-	port_initialize();
-}
-
 void oled_init() {
+	port_msp430_init();
 	ssd1306_init();
 }
 
-inline void oled_set_page_address(uint8_t page) {
+void oled_set_page_address(uint8_t page) {
 	ssd1306_chip_select();
 	ssd1306_enable_command();
     ssd1306_write_byte(0xb0 | page);
@@ -124,5 +121,22 @@ void oled_display_on() {
 	ssd1306_chip_select();
 	ssd1306_enable_command();
 	ssd1306_write_byte(0xaf);
+	ssd1306_chip_deselect();
+}
+
+void oled_write_data(uint8_t *data, uint8_t size) {
+	uint8_t i;
+	ssd1306_chip_select();
+	ssd1306_enable_data();
+	for (i=0; i<size; i++) {
+		ssd1306_write_byte(data[i]);
+	}
+	ssd1306_chip_deselect();
+}
+
+void oled_write_byte(uint8_t data) {
+	ssd1306_chip_select();
+	ssd1306_enable_data();
+	ssd1306_write_byte(data);
 	ssd1306_chip_deselect();
 }

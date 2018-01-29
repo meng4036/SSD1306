@@ -10,7 +10,7 @@
 
 #include <msp430.h>
 
-void port_initialize();
+void port_msp430_init();
 
 void ssd1306_init();
 void ssd1306_write_byte(uint8_t byte);

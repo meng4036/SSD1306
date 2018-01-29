@@ -11,8 +11,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-
-void display_init();
 void oled_init();
 
 void oled_display_off();
@@ -31,4 +29,8 @@ void oled_set_memory_mode(uint8_t mode);
 void oled_set_column_address(uint8_t column);
 void oled_set_page_address(uint8_t page);
 
+
+void oled_write_data(uint8_t *data, uint8_t size);
+
+void oled_write_byte(uint8_t data);
 #endif /* SSD1306_H_ */

@@ -30,7 +30,7 @@ void oled_set_column_address(uint8_t column);
 void oled_set_page_address(uint8_t page);
 
 
-void oled_write_data(uint8_t *data, uint8_t size);
+void oled_write_data(const uint8_t *data, uint8_t size);
 
 void oled_write_byte(uint8_t data);
 #endif /* SSD1306_H_ */

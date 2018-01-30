@@ -20,7 +20,7 @@ void oled_set_page_address(uint8_t page) {
     ssd1306_chip_deselect();
 }
 
-inline void oled_set_column_address(uint8_t column) {
+void oled_set_column_address(uint8_t column) {
 	ssd1306_chip_select();
 	ssd1306_enable_command();
 	ssd1306_write_byte(0x10 | (column >> 4));
@@ -28,7 +28,7 @@ inline void oled_set_column_address(uint8_t column) {
     ssd1306_chip_deselect();
 }
 
-inline void oled_set_memory_mode(uint8_t mode) {
+void oled_set_memory_mode(uint8_t mode) {
 	ssd1306_chip_select();
 	ssd1306_enable_command();
 	ssd1306_write_byte(0x03 & mode);
@@ -124,7 +124,7 @@ void oled_display_on() {
 	ssd1306_chip_deselect();
 }
 
-void oled_write_data(uint8_t *data, uint8_t size) {
+void oled_write_data(const uint8_t *data, uint8_t size) {
 	uint8_t i;
 	ssd1306_chip_select();
 	ssd1306_enable_data();

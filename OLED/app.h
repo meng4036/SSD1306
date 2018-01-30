@@ -1,0 +1,20 @@
+/*
+ * app.h
+ *
+ *  Created on: 2018Äê1ÔÂ30ÈÕ
+ *      Author: meng4
+ */
+
+#ifndef APP_H_
+#define APP_H_
+
+#include <stdint.h>
+
+void oled_clear_screen();
+
+void oled_show_char(char chr);
+
+void oled_show_string(const char *str);
+
+
+#endif /* APP_H_ */

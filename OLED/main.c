@@ -8,16 +8,15 @@ void main(void) {
 	oled_init();
 	oled_set_memory_mode(PAGE_MODE);
 	oled_clear_screen();
-	oled_scroll_deactive();
-	char msg[] = "ABC";
+	char msg[] = "ABCCDEFGH";
+	oled_set_position(1, 16);
+	oled_show_string(msg);
 	int i = 5;
-	for (i=5; i>0; i--) {
-		oled_set_position(i, 16);
-		oled_show_string(msg);
-	}
 
-	oled_scroll_right(0, 2);
-	oled_scroll_left(3, 4);
+	//oled_vertial_scroll_range(0, 64);
+	///oled_scroll_up(2, 3);
+	oled_scroll_up(1, 6, 0x0f);
+	//oled_scroll_right(1, 3);
 
 	i = 5;
 	while(i--) {

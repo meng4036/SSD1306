@@ -154,7 +154,7 @@ void oled_scroll_right(uint8_t start, uint8_t end) {
 	ssd1306_write_byte(0x26);
 	ssd1306_write_byte(0x00);
 	ssd1306_write_byte(start);
-	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(0x08);
 	ssd1306_write_byte(end);
 	ssd1306_write_byte(0x00);
 	ssd1306_write_byte(0xff);
@@ -162,19 +162,56 @@ void oled_scroll_right(uint8_t start, uint8_t end) {
 	ssd1306_chip_deselect();
 }
 
-void oled_scroll_left(uint8_t start, uint8_t end) {
+void oled_scroll_left(uint8_t start, uint8_t stop) {
 	ssd1306_chip_select();
 	ssd1306_enable_command();
+	ssd1306_write_byte(0x2e);
 	ssd1306_write_byte(0x27);
 	ssd1306_write_byte(0x00);
 	ssd1306_write_byte(start);
 	ssd1306_write_byte(0x00);
-	ssd1306_write_byte(end);
+	ssd1306_write_byte(stop);
 	ssd1306_write_byte(0x00);
 	ssd1306_write_byte(0xff);
 	ssd1306_write_byte(0x2f);
 	ssd1306_chip_deselect();
 }
+
+
+void oled_vertial_scroll_range(uint8_t start, uint8_t stop) {
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	ssd1306_write_byte(0xa3);
+	ssd1306_write_byte(start);
+	ssd1306_write_byte(stop);
+}
+
+void oled_scroll_up(uint8_t start, uint8_t end, uint8_t speed) {
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	ssd1306_write_byte(0x29);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(start);
+	ssd1306_write_byte(0x0f); // 值越大，刷新的频率越快
+	ssd1306_write_byte(end);
+	ssd1306_write_byte(0x02); // 每次刷新，上移的行数
+	ssd1306_write_byte(0x2f);
+	ssd1306_chip_deselect();
+}
+
+void oled_scroll_down(uint8_t start, uint8_t end, uint8_t speed) {
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	ssd1306_write_byte(0x2a);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(start);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(end);
+	ssd1306_write_byte(0x02);
+	ssd1306_write_byte(0x2f);
+	ssd1306_chip_deselect();
+}
+
 
 void oled_write_data(const uint8_t *data, uint8_t size) {
 	uint8_t i;

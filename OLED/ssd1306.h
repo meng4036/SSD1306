@@ -35,8 +35,11 @@ void oled_set_page_address(uint8_t page);
 
 void oled_scroll_active();
 void oled_scroll_deactive();
-void oled_scroll_right(uint8_t start, uint8_t end);
-void oled_scroll_left(uint8_t start, uint8_t end);
+void oled_scroll_right(uint8_t start, uint8_t stop);
+void oled_scroll_left(uint8_t start, uint8_t stop);
+void oled_vertial_scroll_range(uint8_t start, uint8_t stop);
+void oled_scroll_up(uint8_t start, uint8_t stop, uint8_t speed);
+void oled_scroll_down(uint8_t start, uint8_t stop, uint8_t speed);
 
 void oled_write_data(const uint8_t *data, uint8_t size);
 

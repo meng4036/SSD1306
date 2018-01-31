@@ -124,6 +124,58 @@ void oled_display_on() {
 	ssd1306_chip_deselect();
 }
 
+static void oled_write_cmd(const char* cmd, uint8_t size) {
+	uint8_t i;
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	for (i=0; i<size; i++) {
+		ssd1306_write_byte(cmd[i]);
+	}
+	ssd1306_chip_deselect();
+}
+
+void oled_scroll_active() {
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	ssd1306_write_byte(0x2f);
+	ssd1306_chip_deselect();
+}
+
+void oled_scroll_deactive() {
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	ssd1306_write_byte(0x2e);
+	ssd1306_chip_deselect();
+}
+
+void oled_scroll_right(uint8_t start, uint8_t end) {
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	ssd1306_write_byte(0x26);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(start);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(end);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(0xff);
+	ssd1306_write_byte(0x2f);
+	ssd1306_chip_deselect();
+}
+
+void oled_scroll_left(uint8_t start, uint8_t end) {
+	ssd1306_chip_select();
+	ssd1306_enable_command();
+	ssd1306_write_byte(0x27);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(start);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(end);
+	ssd1306_write_byte(0x00);
+	ssd1306_write_byte(0xff);
+	ssd1306_write_byte(0x2f);
+	ssd1306_chip_deselect();
+}
+
 void oled_write_data(const uint8_t *data, uint8_t size) {
 	uint8_t i;
 	ssd1306_chip_select();

@@ -11,6 +11,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define HORIZONTAL_MODE		0
+#define VERTICAL_MODE		1
+#define PAGE_MODE			2
+
 void oled_init();
 
 void oled_display_off();
@@ -29,6 +33,10 @@ void oled_set_memory_mode(uint8_t mode);
 void oled_set_column_address(uint8_t column);
 void oled_set_page_address(uint8_t page);
 
+void oled_scroll_active();
+void oled_scroll_deactive();
+void oled_scroll_right(uint8_t start, uint8_t end);
+void oled_scroll_left(uint8_t start, uint8_t end);
 
 void oled_write_data(const uint8_t *data, uint8_t size);
 

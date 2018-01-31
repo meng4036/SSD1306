@@ -10,6 +10,8 @@
 
 #include <stdint.h>
 
+void oled_set_position(uint8_t x, uint8_t y);
+
 void oled_clear_screen();
 
 void oled_show_char(char chr);

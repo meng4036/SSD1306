@@ -31,7 +31,7 @@ void oled_show_char(char chr) {
 }
 
 void oled_show_string(const char *str) {
-	char *pstr = str;
+	const char *pstr = str;
     int len = 0;
     while (*str ++ != '\0')
         ++ len;
